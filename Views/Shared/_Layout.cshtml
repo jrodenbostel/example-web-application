@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - Example Web Application</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+</head>
+<body>
+<header id="navbar-root">
+    <vue-navbar inline-template>
+        <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a asp-controller="Home" asp-action="Index" class="navbar-item">
+                    <span>Example Web Application</span>
+                </a>
+                <a role="button" v-on:click="toggle" v-bind:class="{ 'is-active': burgerActive }" class="navbar-burger burger" data-target="menuBar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+            <div id="menuBar" v-bind:class="{ 'is-active': burgerActive }" class="navbar-menu">
+                <div class="navbar-start">                    
+                    <a class="navbar-item">
+                        Menu 1
+                    </a>
+                    <a class="navbar-item">
+                        Menu 2
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </vue-navbar>
+</header>
+<section>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-10 is-offset-1">
+                <h1 class="title is-1">@ViewData["Title"]</h1>
+                <h3 class="title is-3 has-text-info">@ViewData["Information"]</h3>
+                <h3 class="title is-3 has-text-danger">@ViewData["Error"]</h3>
+                <h3 class="title is-3 has-text-info">@TempData["Information"]</h3>
+                <h3 class="title is-3 has-text-danger">@TempData["Error"]</h3>
+                @RenderBody()
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        &copy; 2020 - yoursitename.com - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
+<script src="~/js/layout.js" asp-append-version="true"></script>
+</body>
+</html>

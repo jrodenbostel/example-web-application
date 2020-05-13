@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+//imports
+@import "~bulma/bulma";
+
+.navbar {
+  letter-spacing: .1rem;
+  background-color: black;
+  color: white;
+
+  .navbar-menu {
+    background-color: black;
+  }
+
+  .navbar-item {
+    color: white;
+  }
+
+  .navbar-dropdown {
+    .navbar-item {
+      color: black;
+    }
+    a {
+      color: black;
+    }
+  }
+
+  a {
+    color: white;
+  }
+}
