@@ -22,7 +22,7 @@ namespace ExampleWebApplication
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
 
@@ -42,7 +42,8 @@ namespace ExampleWebApplication
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DefaultContext defaultContext,
+            IdentityContext identityContext)
         {
             if (env.IsDevelopment())
             {
@@ -55,12 +56,16 @@ namespace ExampleWebApplication
                 app.UseHsts();
             }
 
+            defaultContext.Database.Migrate();
+            identityContext.Database.Migrate();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
